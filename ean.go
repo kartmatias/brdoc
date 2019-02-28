@@ -6,20 +6,25 @@ import (
 )
 
 func IsEanValid(ean string) bool {
-	return ValidEan8(ean) || ValidEan13(ean) || ValidUpc(ean)
-}
-
-func ValidUpc(upc string) bool {
-	return validCode(upc, 12)
-
+	return ValidEan8(ean) || ValidEan13(ean) || ValidEan12(ean) || ValidEan14(ean)
 }
 
 func ValidEan8(ean string) bool {
 	return validCode(ean, 8)
 }
 
+func ValidEan12(upc string) bool {
+	return validCode(upc, 12)
+
+}
+
 func ValidEan13(ean string) bool {
 	return validCode(ean, 13)
+}
+
+func ValidEan14(ean string) bool {
+	return validCode(ean, 14)
+
 }
 
 func validCode(ean string, size int) bool {
@@ -32,14 +37,29 @@ func ChecksumEan8(ean string) (int, error) {
 	return checksum(ean, 8)
 }
 
+func ChecksumEan12(upc string) (int, error) {
+	return checksum(upc, 12)
+}
+
 func ChecksumEan13(ean string) (int, error) {
 	return checksum(ean, 13)
 }
 
-func ChecksumUpc(upc string) (int, error) {
-	return checksum(upc, 12)
+func ChecksumEan14(ean string) (int, error) {
+	return checksum(ean, 14)
 }
 
+
+//GTIN-8  (N8)
+//GTIN-12 (N12) UPC
+//GTIN-13 (N13)
+//GTIN-14 (N14)
+//GSIN    (N17)
+//SSCC    (N18)
+//Step 1: Multiply value of each position by
+//x3x1
+//Step 2: Add results together to create sum
+//Step 3: Subtract the sum from nearest equal or higher multiple of ten = Check Digit
 func checksum(ean string, size int) (int, error) {
 	if len(ean) != size {
 		return -1, fmt.Errorf("incorrect ean %v to compute a checksum", ean)

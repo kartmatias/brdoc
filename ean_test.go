@@ -4,7 +4,7 @@ import "testing"
 import "errors"
 
 func TestIsEanValid(t *testing.T) {
-	invalids := []string{"", "abc", "1111111111111", "978193435673912123123"}
+	invalids := []string{"", "abc", "1111111111111", "978193435673912123123","11111111111111"}
 	for _, ean := range invalids {
 		if IsEanValid(ean) {
 			t.Errorf("IsEanValid(%v) should be false, was true", ean)
@@ -69,5 +69,5 @@ func TestChecksumEan13(t *testing.T) {
 }
 
 func TestChecksumUPC(t *testing.T) {
-	assertChecksum(t, ChecksumUpc, "012345678905", 5, nil)
+	assertChecksum(t, ChecksumEan12, "012345678905", 5, nil)
 }
