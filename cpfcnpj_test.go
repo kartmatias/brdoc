@@ -37,7 +37,7 @@ func TestIsCPF(t *testing.T) {
 		{"248 438 034 80", false},
 		{"099-075-865.60", false},
 
-		// Valid.
+		// IsEanValid.
 		{"248.438.034-80", true},
 		{"099.075.865-60", true},
 	} {
@@ -79,7 +79,7 @@ func TestIsCNPJ(t *testing.T) {
 		{"26-637-142.0001/58", false},
 		{"74-221-325.0001/30", false},
 
-		// Valid.
+		// IsEanValid.
 		{"26.637.142/0001-58", true},
 		{"74.221.325/0001-30", true},
 	} {

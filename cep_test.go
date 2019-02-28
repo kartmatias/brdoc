@@ -49,7 +49,7 @@ func TestIsCEP(t *testing.T) {
 		{"89000-000", []FederativeUnit{RS}, false},
 		{"95000-000", []FederativeUnit{SP}, false},
 
-		// Valid.
+		// IsEanValid.
 		{"10000-000", []FederativeUnit{SP}, true},
 		{"25000-000", []FederativeUnit{RJ}, true},
 		{"29500-000", []FederativeUnit{ES}, true},
@@ -116,7 +116,7 @@ func TestValidateCEPFormat(t *testing.T) {
 		{"0000000x", false},
 		{"00000-00x", false},
 
-		// Valid.
+		// IsEanValid.
 		{"00000000", true},
 		{"00000-000", true},
 		{"12345678", true},
